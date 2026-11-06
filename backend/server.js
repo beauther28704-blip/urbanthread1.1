@@ -26,6 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Serve frontend static files from frontend/public folder
 app.use(express.static(path.join(__dirname, '../frontend/public')));
+app.use('/assets', express.static(path.join(__dirname, '../assets')));
 
 // -------------------------------------------------------------
 // MongoDB Atlas Database Connection
