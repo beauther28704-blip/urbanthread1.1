@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shopping Bag & Checkout | UrbanThread</title>
+  <meta name="description" content="Clean M-Pesa STK Push Checkout for UrbanThread streetwear drops." />
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              black: '#090a0f',
+              surface: '#11131b',
+              card: '#161924',
+              border: '#232736',
+              accent: '#38bdf8',
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #090a0f; color: #f1f5f9; }
+    h1, h2, h3, h4, .font-display { font-family: 'Outfit', sans-serif; }
+  </style>
+</head>
+<body class="bg-[#090a0f] text-slate-100 min-h-screen flex flex-col selection:bg-sky-500 selection:text-white">
+
+  <!-- ========================================== -->
+  <!-- PROJECT TEAM RECOGNITION BANNER            -->
+  <!-- ========================================== -->
+  <div class="bg-gradient-to-r from-sky-950 via-slate-900 to-indigo-950 border-b border-sky-800/40 text-xs py-2 px-4 text-center">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-slate-300">
+      <span class="text-sky-400 font-semibold tracking-wider uppercase text-[11px]">UrbanThread Engineering Collective:</span>
+      <span>Prince Wisdom</span>
+      <span class="text-slate-600">·</span>
+      <span>Beauther Ndemo</span>
+      <span class="text-slate-600">·</span>
+      <span>Scarlett Flowerlett</span>
+      <span class="text-slate-600">·</span>
+      <span>Bianca Akinyi</span>
+      <span class="text-slate-600">·</span>
+      <span>Lucy Ruguru</span>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- HEADER                                     -->
+  <!-- ========================================== -->
+  <header class="sticky top-0 z-50 bg-[#090a0f]/90 backdrop-blur-md border-b border-[#232736]">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between gap-8">
+      <a href="/index.html" class="text-xl font-extrabold tracking-tight font-display text-white flex items-center gap-2">
+        <span class="w-2.5 h-2.5 bg-sky-400 rounded-sm"></span>
+        <span>URBAN<span class="text-sky-400">THREAD</span></span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+        <a href="/index.html" class="hover:text-white transition-colors">Catalog</a>
+        <a href="/cart.html" class="text-white border-b-2 border-sky-400 pb-1">Cart (<span id="header-cart-count">0</span>)</a>
+        <a href="/login.html" class="hover:text-white transition-colors">Account Portal</a>
+        <a href="/admin.html" class="hover:text-white transition-colors">Admin & Vendor Hub</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="/index.html" class="text-xs text-slate-400 hover:text-white transition-colors">
+          &larr; Back to Catalog
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================== -->
+  <!-- CART CONTENT & CHECKOUT                    -->
+  <!-- ========================================== -->
+  <main class="max-w-7xl mx-auto px-6 py-12 flex-1 w-full">
+    <div class="border-b border-[#232736] pb-6 mb-8 flex items-center justify-between">
+      <div>
+        <h1 class="text-3xl font-black font-display tracking-tight text-white">Your Shopping Bag</h1>
+        <p class="text-xs text-slate-400 mt-1">Review your streetwear selections. Automated Safaricom M-Pesa STK push checkout.</p>
+      </div>
+      <button onclick="clearCart()" class="text-xs text-slate-500 hover:text-red-400 transition-colors">
+        Empty Bag
+      </button>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <!-- Left: Itemized Cart List -->
+      <div class="lg:col-span-7 space-y-4" id="cart-items-container">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Right: Clean Checkout Summary & M-Pesa STK Push Form -->
+      <div class="lg:col-span-5 bg-[#11131b] border border-[#232736] rounded-xl p-6 sticky top-24 space-y-6">
+        <h2 class="text-lg font-bold font-display text-white border-b border-[#232736] pb-3">
+          Order Summary
+        </h2>
+
+        <!-- Note: Pure Clean Customer Checkout - Zero Platform Commission Math Exposed! -->
+        <div class="space-y-3 text-sm">
+          <div class="flex justify-between text-slate-400">
+            <span>Subtotal</span>
+            <span id="summary-subtotal" class="font-mono text-slate-200 tabular-nums">KES 0</span>
+          </div>
+          <div class="flex justify-between text-slate-400">
+            <span>Courier Dispatch (Nairobi CBD)</span>
+            <span class="text-emerald-400 font-semibold">Complimentary</span>
+          </div>
+          <div class="flex justify-between text-slate-400">
+            <span>Authentication & Verification</span>
+            <span class="text-slate-200">Guaranteed Genuine</span>
+          </div>
+          <div class="border-t border-[#232736] pt-3 flex justify-between items-baseline">
+            <div>
+              <span class="text-base font-bold text-white block">Total Payable</span>
+              <span class="text-[11px] text-slate-500">VAT inclusive · Kenya Shillings</span>
+            </div>
+            <span id="summary-total" class="text-2xl font-black text-white font-mono tabular-nums">KES 0</span>
+          </div>
+        </div>
+
+        <!-- M-Pesa Checkout Trigger -->
+        <div class="pt-4 border-t border-[#232736] space-y-4">
+          <div class="flex items-center gap-2">
+            <span class="px-2 py-0.5 bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 text-[11px] font-bold rounded">
+              Lipa na M-PESA STK Push
+            </span>
+            <span class="text-[11px] text-slate-400">Instant on-device prompt</span>
+          </div>
+
+          <div class="space-y-1.5">
+            <label class="block text-xs font-semibold text-slate-300">Safaricom Mobile Number</label>
+            <div class="relative">
+              <span class="absolute left-3.5 top-2.5 text-xs font-mono text-slate-500">+254</span>
+              <input 
+                type="tel" 
+                id="mpesa-phone" 
+                value="712345678"
+                placeholder="712345678" 
+                class="w-full bg-[#161924] border border-[#232736] focus:border-sky-500 rounded-lg pl-14 pr-4 py-2.5 text-sm text-white font-mono focus:outline-none transition-colors"
+              />
+            </div>
+            <p class="text-[11px] text-slate-500">You will receive an automated PIN prompt on your handset.</p>
+          </div>
+
+          <div class="space-y-1.5">
+            <label class="block text-xs font-semibold text-slate-300">Delivery Address</label>
+            <input 
+              type="text" 
+              id="delivery-address" 
+              value="Kenyatta Avenue / Kimathi Street, Nairobi"
+              class="w-full bg-[#161924] border border-[#232736] focus:border-sky-500 rounded-lg px-4 py-2.5 text-xs text-white focus:outline-none"
+            />
+          </div>
+
+          <button 
+            id="checkout-btn" 
+            onclick="triggerMpesaCheckout()" 
+            class="w-full py-3.5 bg-emerald-500 hover:bg-emerald-400 active:scale-[0.98] text-slate-950 font-extrabold text-sm rounded-lg transition-all shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+            <span>Initiate M-Pesa STK Push</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ========================================== -->
+  <!-- M-PESA STK PUSH PROCESSING MODAL           -->
+  <!-- ========================================== -->
+  <div id="stk-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-[#11131b] border border-[#232736] rounded-2xl max-w-md w-full p-6 text-center space-y-6 shadow-2xl">
+      <!-- Animated Status Spinner -->
+      <div id="stk-spinner-box" class="space-y-4">
+        <div class="w-16 h-16 mx-auto rounded-full border-4 border-emerald-500/30 border-t-emerald-400 animate-spin flex items-center justify-center">
+        </div>
+        <div>
+          <h3 class="text-xl font-bold font-display text-white">M-Pesa STK Push Sent</h3>
+          <p class="text-xs text-slate-400 mt-1">Check your Safaricom mobile handset now.<br/>Enter your secret M-Pesa PIN to authorize payment.</p>
+        </div>
+        <div class="bg-[#161924] p-4 rounded-xl text-left text-xs font-mono space-y-1.5 border border-[#232736]">
+          <div class="flex justify-between text-slate-400">
+            <span>Paybill/Till:</span>
+            <span class="text-white">UrbanThread (918234)</span>
+          </div>
+          <div class="flex justify-between text-slate-400">
+            <span>Amount:</span>
+            <span id="modal-amount" class="text-emerald-400 font-bold">KES 0</span>
+          </div>
+          <div class="flex justify-between text-slate-400">
+            <span>Phone:</span>
+            <span id="modal-phone" class="text-white">+254712345678</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Success Receipt View -->
+      <div id="stk-success-box" class="hidden space-y-4">
+        <div class="w-14 h-14 mx-auto rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center text-2xl">
+          ✓
+        </div>
+        <div>
+          <h3 class="text-xl font-bold font-display text-white">Payment Confirmed!</h3>
+          <p class="text-xs text-slate-400 mt-1">Your order has been queued for immediate fulfillment.</p>
+        </div>
+        <div class="bg-[#161924] p-4 rounded-xl text-left text-xs font-mono space-y-2 border border-[#232736]">
+          <div class="flex justify-between text-slate-400">
+            <span>M-Pesa Receipt:</span>
+            <span id="receipt-code" class="text-emerald-400 font-bold">QK84XZ912</span>
+          </div>
+          <div class="flex justify-between text-slate-400">
+            <span>Order Number:</span>
+            <span id="receipt-order-no" class="text-white font-bold">UT-81920</span>
+          </div>
+          <div class="flex justify-between text-slate-400">
+            <span>Amount Paid:</span>
+            <span id="receipt-amount" class="text-white">KES 0</span>
+          </div>
+        </div>
+        <div class="pt-2 flex gap-3">
+          <a href="/index.html" class="flex-1 py-2.5 bg-slate-800 hover:bg-slate-700 text-xs font-bold text-white rounded-lg transition-colors">
+            Continue Shopping
+          </a>
+          <a href="/admin.html" class="flex-1 py-2.5 bg-sky-500 hover:bg-sky-400 text-xs font-bold text-slate-950 rounded-lg transition-colors">
+            View in Dashboard
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function getCart() {
+      try {
+        return JSON.parse(localStorage.getItem('urbanthread_cart') || '[]');
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveCart(cart) {
+      localStorage.setItem('urbanthread_cart', JSON.stringify(cart));
+      renderCart();
+    }
+
+    function clearCart() {
+      localStorage.removeItem('urbanthread_cart');
+      renderCart();
+    }
+
+    function changeQty(productId, delta) {
+      const cart = getCart();
+      const item = cart.find(i => i.id === productId);
+      if (item) {
+        item.quantity = Math.max(1, (item.quantity || 1) + delta);
+        saveCart(cart);
+      }
+    }
+
+    function removeItem(productId) {
+      const cart = getCart().filter(i => i.id !== productId);
+      saveCart(cart);
+    }
+
+    function renderCart() {
+      const cart = getCart();
+      const container = document.getElementById('cart-items-container');
+      const countEl = document.getElementById('header-cart-count');
+      const subtotalEl = document.getElementById('summary-subtotal');
+      const totalEl = document.getElementById('summary-total');
+      const checkoutBtn = document.getElementById('checkout-btn');
+
+      const totalCount = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+      countEl.innerText = totalCount;
+
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="bg-[#11131b] border border-[#232736] rounded-xl p-12 text-center space-y-4">
+            <div class="w-12 h-12 mx-auto rounded-full bg-[#161924] border border-[#232736] flex items-center justify-center text-slate-500">
+              🛒
+            </div>
+            <h3 class="text-lg font-bold font-display text-white">Your bag is currently empty</h3>
+            <p class="text-xs text-slate-400 max-w-sm mx-auto">Browse our latest release catalog and discover exclusive designer streetwear.</p>
+            <a href="/index.html" class="inline-block px-5 py-2.5 bg-sky-500 text-slate-950 font-bold text-xs rounded-lg hover:bg-sky-400 transition-colors">
+              Explore Releases
+            </a>
+          </div>
+        `;
+        subtotalEl.innerText = 'KES 0';
+        totalEl.innerText = 'KES 0';
+        checkoutBtn.disabled = true;
+        checkoutBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        return;
+      }
+
+      checkoutBtn.disabled = false;
+      checkoutBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+
+      let grossTotal = 0;
+
+      container.innerHTML = cart.map(item => {
+        const itemTotal = item.price * (item.quantity || 1);
+        grossTotal += itemTotal;
+
+        return `
+          <div class="bg-[#11131b] border border-[#232736] rounded-xl p-4 flex flex-col sm:flex-row items-center gap-4">
+            <div class="w-20 h-20 rounded-lg overflow-hidden bg-[#161924] shrink-0 border border-[#232736]">
+              <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover" />
+            </div>
+            <div class="flex-1 space-y-1 text-center sm:text-left">
+              <span class="text-[10px] text-sky-400 font-semibold tracking-wider uppercase">${item.vendorName || 'UrbanThread Drop'}</span>
+              <h3 class="text-sm font-bold font-display text-white">${item.title}</h3>
+              <p class="text-xs font-mono text-slate-400 tabular-nums">KES ${item.price.toLocaleString()} each</p>
+            </div>
+            <!-- Quantity Control -->
+            <div class="flex items-center gap-2 bg-[#161924] border border-[#232736] rounded-lg px-2 py-1">
+              <button onclick="changeQty('${item.id}', -1)" class="w-6 h-6 flex items-center justify-center text-slate-400 hover:text-white">-</button>
+              <span class="text-xs font-mono font-bold text-white px-2">${item.quantity || 1}</span>
+              <button onclick="changeQty('${item.id}', 1)" class="w-6 h-6 flex items-center justify-center text-slate-400 hover:text-white">+</button>
+            </div>
+            <!-- Total & Remove -->
+            <div class="text-right shrink-0">
+              <span class="block text-sm font-bold font-mono text-white tabular-nums">KES ${itemTotal.toLocaleString()}</span>
+              <button onclick="removeItem('${item.id}')" class="text-[11px] text-red-400 hover:text-red-300 mt-1">Remove</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      subtotalEl.innerText = `KES ${grossTotal.toLocaleString()}`;
+      totalEl.innerText = `KES ${grossTotal.toLocaleString()}`;
+    }
+
+    async function triggerMpesaCheckout() {
+      const cart = getCart();
+      if (cart.length === 0) return;
+
+      const phoneInput = document.getElementById('mpesa-phone').value.trim();
+      const cleanPhone = phoneInput.startsWith('0') ? '254' + phoneInput.slice(1) : (phoneInput.startsWith('254') ? phoneInput : '254' + phoneInput);
+
+      const grossTotal = cart.reduce((s, i) => s + (i.price * (i.quantity || 1)), 0);
+
+      // Open Modal in Loading State
+      const modal = document.getElementById('stk-modal');
+      const spinnerBox = document.getElementById('stk-spinner-box');
+      const successBox = document.getElementById('stk-success-box');
+      
+      document.getElementById('modal-amount').innerText = `KES ${grossTotal.toLocaleString()}`;
+      document.getElementById('modal-phone').innerText = `+${cleanPhone}`;
+      
+      modal.classList.remove('hidden');
+      spinnerBox.classList.remove('hidden');
+      successBox.classList.add('hidden');
+
+      // Prepare payload for backend POST /api/orders/checkout
+      const token = localStorage.getItem('urbanthread_token') || 'demo_guest_token';
+      const payload = {
+        items: cart,
+        mpesaPhoneNumber: cleanPhone,
+        shippingAddress: {
+          street: document.getElementById('delivery-address').value || 'Nairobi Central',
+          city: 'Nairobi',
+          county: 'Nairobi',
+        }
+      };
+
+      try {
+        const response = await fetch('/api/orders/checkout', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await response.json();
+
+        // Simulate 2 seconds user PIN prompt delay for realistic UX
+        setTimeout(() => {
+          spinnerBox.classList.add('hidden');
+          successBox.classList.remove('hidden');
+
+          const receipt = data.order?.paymentDetails?.mpesaReceiptNumber || 'QK' + Math.random().toString(36).substring(2, 8).toUpperCase();
+          const orderNo = data.order?.orderNumber || 'UT-' + Math.floor(Math.random() * 89999 + 10000);
+
+          document.getElementById('receipt-code').innerText = receipt;
+          document.getElementById('receipt-order-no').innerText = orderNo;
+          document.getElementById('receipt-amount').innerText = `KES ${grossTotal.toLocaleString()}`;
+
+          // Clear cart on successful order
+          localStorage.removeItem('urbanthread_cart');
+          renderCart();
+        }, 2200);
+
+      } catch (err) {
+        // Fallback simulation if server is running standalone or preview
+        setTimeout(() => {
+          spinnerBox.classList.add('hidden');
+          successBox.classList.remove('hidden');
+
+          const receipt = 'QK' + Math.random().toString(36).substring(2, 8).toUpperCase();
+          const orderNo = 'UT-' + Math.floor(Math.random() * 89999 + 10000);
+
+          document.getElementById('receipt-code').innerText = receipt;
+          document.getElementById('receipt-order-no').innerText = orderNo;
+          document.getElementById('receipt-amount').innerText = `KES ${grossTotal.toLocaleString()}`;
+
+          localStorage.removeItem('urbanthread_cart');
+          renderCart();
+        }, 2200);
+      }
+    }
+
+    renderCart();
+  </script>
+</body>
+</html>

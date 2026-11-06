@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UrbanThread | Exclusive Streetwear Syndicate</title>
+  <meta name="description" content="Exclusive dark-mode streetwear marketplace with automated commission backend and M-Pesa checkout." />
+  
+  <!-- Tailwind CSS CDN for standalone deployment -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              black: '#090a0f',
+              surface: '#11131b',
+              card: '#161924',
+              border: '#232736',
+              accent: '#38bdf8',
+              crimson: '#f43f5e',
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #090a0f; color: #f1f5f9; }
+    h1, h2, h3, h4, .font-display { font-family: 'Outfit', sans-serif; }
+  </style>
+</head>
+<body class="bg-[#090a0f] text-slate-100 min-h-screen flex flex-col selection:bg-sky-500 selection:text-white">
+
+  <!-- ========================================== -->
+  <!-- PROJECT TEAM RECOGNITION BANNER            -->
+  <!-- ========================================== -->
+  <div class="bg-gradient-to-r from-sky-950 via-slate-900 to-indigo-950 border-b border-sky-800/40 text-xs py-2 px-4 text-center">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-slate-300">
+      <span class="text-sky-400 font-semibold tracking-wider uppercase text-[11px]">UrbanThread Engineering Collective:</span>
+      <span class="hover:text-white transition-colors">Prince Wisdom</span>
+      <span class="text-slate-600">·</span>
+      <span class="hover:text-white transition-colors">Beauther Ndemo</span>
+      <span class="text-slate-600">·</span>
+      <span class="hover:text-white transition-colors">Scarlett Flowerlett</span>
+      <span class="text-slate-600">·</span>
+      <span class="hover:text-white transition-colors">Bianca Akinyi</span>
+      <span class="text-slate-600">·</span>
+      <span class="hover:text-white transition-colors">Lucy Ruguru</span>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- TOP NAVIGATION BAR                         -->
+  <!-- ========================================== -->
+  <header class="sticky top-0 z-50 bg-[#090a0f]/90 backdrop-blur-md border-b border-[#232736]">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between gap-8">
+      <!-- Zone 1: Single Wordmark -->
+      <a href="/index.html" class="text-xl font-extrabold tracking-tight font-display text-white whitespace-nowrap shrink-0 flex items-center gap-2">
+        <span class="w-2.5 h-2.5 bg-sky-400 rounded-sm"></span>
+        <span>URBAN<span class="text-sky-400">THREAD</span></span>
+      </a>
+
+      <!-- Zone 2: Navigation Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400">
+        <a href="/index.html" class="text-white border-b-2 border-sky-400 pb-1 whitespace-nowrap">Catalog</a>
+        <a href="/cart.html" class="hover:text-white transition-colors whitespace-nowrap">Cart (<span id="nav-cart-count">0</span>)</a>
+        <a href="/login.html" class="hover:text-white transition-colors whitespace-nowrap">Account Portal</a>
+        <a href="/admin.html" class="hover:text-white transition-colors whitespace-nowrap">Admin & Vendor Hub</a>
+      </nav>
+
+      <!-- Zone 3: Primary Action / User Profile -->
+      <div class="flex items-center gap-4 shrink-0">
+        <a href="/cart.html" class="relative px-4 py-2 bg-slate-800 hover:bg-slate-700 text-xs font-semibold rounded-lg text-white border border-slate-700 transition-all flex items-center gap-2">
+          <span>Bag</span>
+          <span id="badge-cart-count" class="px-1.5 py-0.2 bg-sky-500 text-black text-[10px] font-bold rounded-full">0</span>
+        </a>
+        <a href="/login.html" id="nav-user-btn" class="px-4 py-2 bg-sky-500 hover:bg-sky-400 text-slate-950 text-xs font-bold rounded-lg transition-colors whitespace-nowrap">
+          Sign In
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================== -->
+  <!-- HERO BANNER                                -->
+  <!-- ========================================== -->
+  <section class="relative border-b border-[#232736] overflow-hidden bg-[#11131b]">
+    <div class="max-w-7xl mx-auto px-6 py-12 md:py-20 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <div class="lg:col-span-7 space-y-6">
+        <div class="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-sky-400">
+          <span>Season 2026</span>
+          <span class="text-slate-600">/</span>
+          <span>Nairobi Underground Drops</span>
+        </div>
+        <h1 class="text-4xl md:text-6xl font-black font-display tracking-tight text-white leading-none">
+          ARCHITECTURAL SILHOUETTES & RAW TEXTURES.
+        </h1>
+        <p class="text-slate-400 text-base md:text-lg max-w-xl leading-relaxed">
+          Curated streetwear designed by independent ateliers. Automated 10% platform developer commission engine, direct vendor payouts, and frictionless Safaricom M-Pesa STK push checkout.
+        </p>
+        <div class="flex flex-wrap items-center gap-4 pt-2">
+          <a href="#catalog" class="px-6 py-3 bg-white hover:bg-slate-200 text-slate-950 text-sm font-bold rounded-lg transition-colors">
+            Explore Releases
+          </a>
+          <a href="/admin.html" class="px-6 py-3 bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 text-sm font-semibold rounded-lg transition-colors">
+            Vendor Portal
+          </a>
+        </div>
+      </div>
+      <div class="lg:col-span-5 relative">
+        <div class="aspect-[4/3] rounded-xl overflow-hidden border border-[#232736] shadow-2xl relative group bg-slate-900">
+          <img 
+            src="/src/assets/images/streetwear_oversized_hoodie_1793968809104.jpg" 
+            alt="UrbanThread Signature Drop" 
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            referrerpolicy="no-referrer"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-6">
+            <div>
+              <span class="text-xs text-sky-400 font-semibold uppercase tracking-wider">Spotlight Drop</span>
+              <p class="text-white text-lg font-bold font-display">Distressed Acid Wash Heavy French Terry</p>
+              <p class="text-slate-300 text-sm">KES 8,500 · In Stock</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- CATALOG & FILTERS                          -->
+  <!-- ========================================== -->
+  <main id="catalog" class="max-w-7xl mx-auto px-6 py-12 flex-1 w-full">
+    <!-- Category Filter Bar -->
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-[#232736] pb-6 mb-8">
+      <div>
+        <h2 class="text-2xl font-bold font-display tracking-tight text-white">Marketplace Releases</h2>
+        <p class="text-slate-400 text-xs mt-1">Clothing, footwear, and tactical accessories verified for authentic drop.</p>
+      </div>
+
+      <!-- Segmented Category Controls -->
+      <div class="flex items-center gap-1.5 p-1 bg-[#161924] border border-[#232736] rounded-lg">
+        <button onclick="filterCategory('all')" id="btn-cat-all" class="px-3.5 py-1.5 text-xs font-semibold rounded-md transition-colors bg-sky-500 text-slate-950">
+          All Drops
+        </button>
+        <button onclick="filterCategory('clothing')" id="btn-cat-clothing" class="px-3.5 py-1.5 text-xs font-semibold rounded-md transition-colors text-slate-400 hover:text-white">
+          Clothing
+        </button>
+        <button onclick="filterCategory('shoes')" id="btn-cat-shoes" class="px-3.5 py-1.5 text-xs font-semibold rounded-md transition-colors text-slate-400 hover:text-white">
+          Shoes
+        </button>
+        <button onclick="filterCategory('accessories')" id="btn-cat-accessories" class="px-3.5 py-1.5 text-xs font-semibold rounded-md transition-colors text-slate-400 hover:text-white">
+          Accessories
+        </button>
+      </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Injected via JavaScript -->
+    </div>
+  </main>
+
+  <!-- ========================================== -->
+  <!-- FOOTER                                     -->
+  <!-- ========================================== -->
+  <footer class="bg-[#0b0d14] border-t border-[#232736] mt-auto">
+    <div class="max-w-7xl mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      <div>
+        <span class="font-bold text-slate-300 font-display">UrbanThread Marketplace</span>
+        <span class="mx-2">·</span>
+        <span>Built with MongoDB, Express, React/HTML & Node.js</span>
+      </div>
+      <div class="flex items-center gap-4 text-slate-400">
+        <span>M-Pesa STK Push Gateway</span>
+        <span>·</span>
+        <span>10% Platform Developer Commission</span>
+        <span>·</span>
+        <span>2026 All Rights Reserved</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-sky-500 text-slate-950 font-semibold px-4 py-3 rounded-lg shadow-xl text-xs flex items-center gap-2">
+    <span id="toast-msg">Item added to cart</span>
+  </div>
+
+  <script>
+    // Initial Catalog Items
+    const products = [
+      {
+        id: 'prod_101',
+        title: 'Distressed Oversized Acid Hoodie',
+        category: 'clothing',
+        price: 8500,
+        stock: 15,
+        image: '/src/assets/images/streetwear_oversized_hoodie_1793968809104.jpg',
+        description: 'Heavyweight 520 GSM French terry cotton with hand-distressed raw seams.',
+        vendorName: 'Tokyo Void Studio',
+        tag: 'Limited 1 of 50'
+      },
+      {
+        id: 'prod_102',
+        title: 'Tactical Matte Cargo Trousers',
+        category: 'clothing',
+        price: 11200,
+        stock: 22,
+        image: '/src/assets/images/streetwear_cargo_pants_1793968809553.jpg',
+        description: 'Japanese raw cotton twill with 8 tactical zip compartments and D-rings.',
+        vendorName: 'Nairobi Cyber Apparel',
+        tag: 'Core Drop'
+      },
+      {
+        id: 'prod_103',
+        title: 'Architectural Stealth Platform Sneaker',
+        category: 'shoes',
+        price: 18900,
+        stock: 8,
+        image: '/src/assets/images/streetwear_chunky_sneakers_1793968810806.jpg',
+        description: 'Vibram sculpt platform midsole with matte nubuck leather uppers.',
+        vendorName: 'Kibera Kicks Lab',
+        tag: 'Run Low Stock'
+      },
+      {
+        id: 'prod_104',
+        title: 'Ballistic Modular Chest Rig Bag',
+        category: 'accessories',
+        price: 6400,
+        stock: 30,
+        image: '/src/assets/images/streetwear_utility_crossbody_1793968810796.jpg',
+        description: '1000D Cordura military-grade nylon crossbody rig with Cobra buckle.',
+        vendorName: 'Tokyo Void Studio',
+        tag: 'Signature Piece'
+      }
+    ];
+
+    let currentCategory = 'all';
+
+    function getCart() {
+      try {
+        return JSON.parse(localStorage.getItem('urbanthread_cart') || '[]');
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveCart(cart) {
+      localStorage.setItem('urbanthread_cart', JSON.stringify(cart));
+      updateCartBadge();
+    }
+
+    function updateCartBadge() {
+      const cart = getCart();
+      const count = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+      document.getElementById('nav-cart-count').innerText = count;
+      document.getElementById('badge-cart-count').innerText = count;
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const msg = document.getElementById('toast-msg');
+      msg.innerText = message;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 2500);
+    }
+
+    function addToCart(productId) {
+      const prod = products.find(p => p.id === productId);
+      if (!prod) return;
+
+      const cart = getCart();
+      const existing = cart.find(item => item.id === productId);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({ ...prod, quantity: 1 });
+      }
+      saveCart(cart);
+      showToast(`Added ${prod.title} to bag.`);
+    }
+
+    function filterCategory(cat) {
+      currentCategory = cat;
+      ['all', 'clothing', 'shoes', 'accessories'].forEach(c => {
+        const btn = document.getElementById(`btn-cat-${c}`);
+        if (c === cat) {
+          btn.className = "px-3.5 py-1.5 text-xs font-semibold rounded-md transition-colors bg-sky-500 text-slate-950";
+        } else {
+          btn.className = "px-3.5 py-1.5 text-xs font-semibold rounded-md transition-colors text-slate-400 hover:text-white";
+        }
+      });
+      renderProducts();
+    }
+
+    function renderProducts() {
+      const grid = document.getElementById('product-grid');
+      const filtered = currentCategory === 'all' 
+        ? products 
+        : products.filter(p => p.category === currentCategory);
+
+      grid.innerHTML = filtered.map(p => `
+        <div class="bg-[#11131b] border border-[#232736] hover:border-sky-500/50 rounded-xl overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1 group">
+          <div class="aspect-[4/3] bg-[#161924] overflow-hidden relative">
+            <img 
+              src="${p.image}" 
+              alt="${p.title}" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              referrerpolicy="no-referrer"
+            />
+            <div class="absolute top-3 left-3 bg-black/75 backdrop-blur-sm border border-slate-700/60 text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded text-sky-400">
+              ${p.tag}
+            </div>
+            <div class="absolute top-3 right-3 text-[10px] text-slate-400 bg-black/60 px-2 py-0.5 rounded">
+              ${p.category}
+            </div>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+            <div>
+              <p class="text-[11px] text-slate-400 tracking-wider uppercase font-semibold">${p.vendorName}</p>
+              <h3 class="text-base font-bold font-display text-white mt-1 group-hover:text-sky-400 transition-colors">${p.title}</h3>
+              <p class="text-xs text-slate-400 mt-1 line-clamp-2 leading-relaxed">${p.description}</p>
+            </div>
+            <div class="flex items-center justify-between pt-3 border-t border-[#232736]">
+              <div>
+                <span class="text-[10px] text-slate-500 block uppercase font-medium">Price</span>
+                <span class="text-base font-extrabold text-white font-mono tabular-nums">KES ${p.price.toLocaleString()}</span>
+              </div>
+              <button 
+                onclick="addToCart('${p.id}')"
+                class="px-4 py-2 bg-sky-500 hover:bg-sky-400 active:scale-95 text-slate-950 font-bold text-xs rounded-lg transition-all flex items-center gap-1.5"
+              >
+                <span>Add to Cart</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Check auth status
+    function checkAuth() {
+      const userRaw = localStorage.getItem('urbanthread_user');
+      if (userRaw) {
+        try {
+          const user = JSON.parse(userRaw);
+          const btn = document.getElementById('nav-user-btn');
+          btn.innerText = user.name.split(' ')[0] + ` (${user.role})`;
+          btn.href = '/admin.html';
+        } catch (e) {}
+      }
+    }
+
+    // Initialize
+    updateCartBadge();
+    renderProducts();
+    checkAuth();
+  </script>
+</body>
+</html>
