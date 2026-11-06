@@ -19,6 +19,14 @@ const userRouter = require('./routes/userRoutes');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+if (require.main === module) {
+  app.listen(PORT, '0.0.0.0', () => {
+    console.log(`[UrbanThread] Express server running on port ${PORT}`);
+  });
+}
+
+
+
 // Enable Cross-Origin Resource Sharing & Request JSON Body Parsing
 app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
@@ -84,6 +92,16 @@ app.get('*', (req, res) => {
       `);
     }
   });
+});
+
+const path = require('path');
+
+// Serve static assets from frontend/public folder
+app.use(express.static(path.join(__dirname, '../public')));
+
+// Fallback to index.html for customer storefront routing
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../public/index.html'));
 });
 
 // Start Express Listener if run directly
